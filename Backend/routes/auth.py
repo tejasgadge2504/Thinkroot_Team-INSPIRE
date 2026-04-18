@@ -1,92 +1,39 @@
 from flask import Blueprint, request, jsonify
-from pymongo import MongoClient
-import bcrypt
-import os
-from bson.objectid import ObjectId
-from dotenv import load_dotenv
-
-# Load env variables
-load_dotenv()
-
+import json
 
 auth_bp = Blueprint("auth", __name__)
 
-# MongoDB connection
-# MONGO_URI = "YOUR_MONGODB_ATLAS_CONNECTION_STRING"
-# MONGO_URI = "mongodb+srv://teaminspire2226:INSPIRE%402226@cluster0.6ahzj5u.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
-# MongoDB connection from environment variable
-MONGO_URI = os.getenv("MONGO_URI")
+DB_FILE = "db.json"
 
+def load_db():
+    with open(DB_FILE, "r") as f:
+        return json.load(f)
 
-client = MongoClient(MONGO_URI)
-db = client["backend_app"]
-users_collection = db["users"]
+def save_db(data):
+    with open(DB_FILE, "w") as f:
+        json.dump(data, f, indent=4)
 
-
-# -------------------------
-# Register users
-# -------------------------
-@auth_bp.route("/auth/register", methods=["POST"])
-def register():
-
+@auth_bp.route("/driver/login", methods=["POST"])
+def driver_login():
     data = request.json
 
-    name = data.get("name")
-    email = data.get("email")
-    pin = data.get("pin")
+    bus_no = data.get("bus_no")
+    driver_no = data.get("driver_no")
+    plate_no = data.get("plate_no")
 
-    if not name or not email or not pin:
-        return jsonify({"error": "All fields required"}), 400
+    db = load_db()
 
-    if len(pin) != 4:
-        return jsonify({"error": "PIN must be 4 digits"}), 400
+    driver_id = f"{bus_no}_{driver_no}"
 
-    existing = users_collection.find_one({"email": email})
-
-    if existing:
-        return jsonify({"error": "user already registered"}), 400
-
-    hashed_pin = bcrypt.hashpw(pin.encode("utf-8"), bcrypt.gensalt())
-
-    user = {
-        "name": name,
-        "email": email,
-        "pin": hashed_pin
+    db["drivers"][driver_id] = {
+        "bus_no": bus_no,
+        "driver_no": driver_no,
+        "plate_no": plate_no
     }
 
-    users_collection.insert_one(user)
+    save_db(db)
 
     return jsonify({
-        "message": "user registered successfully"
+        "message": "Driver logged in",
+        "driver_id": driver_id
     })
-
-
-# -------------------------
-# Login
-# -------------------------
-@auth_bp.route("/auth/login", methods=["POST"])
-def login():
-
-    data = request.json
-
-    email = data.get("email")
-    pin = data.get("pin")
-
-    user = users_collection.find_one({"email": email})
-
-    if not user:
-        return jsonify({"error": "user not found"}), 404
-
-    stored_pin = user["pin"]
-
-    if bcrypt.checkpw(pin.encode("utf-8"), stored_pin):
-
-        return jsonify({
-            "message": "Login successful",
-            "user_id": str(user["_id"]),
-            "name": user["name"]
-        })
-
-    else:
-        return jsonify({"error": "Invalid PIN"}), 401
-    

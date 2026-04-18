@@ -1,0 +1,154 @@
+{
+    "drivers": {
+        "TN45B1010_D1": {
+            "bus_no": "TN45B1010",
+            "driver_no": "D1",
+            "plate_no": "TN45B1010"
+        },
+        "TN45B2020_D2": {
+            "bus_no": "TN45B2020",
+            "driver_no": "D2",
+            "plate_no": "TN45B2020"
+        },
+        "TN45C3030_D3": {
+            "bus_no": "TN45C3030",
+            "driver_no": "D3",
+            "plate_no": "TN45C3030"
+        }
+    },
+    "locations": {
+        "TN45B1010_D1": [
+            {
+                "lat": 10.8342,
+                "lon": 78.6932,
+                "network": "good",
+                "timestamp": 1710000001
+            },
+            {
+                "lat": 10.7905,
+                "lon": 78.7047,
+                "network": "good",
+                "timestamp": 1710000010
+            },
+            {
+                "lat": 10.791301442121528,
+                "lon": 78.7048146774702,
+                "network": "good",
+                "timestamp": 1776545676
+            },
+            {
+                "lat": 10.791749039161555,
+                "lon": 78.70556489272433,
+                "network": "good",
+                "timestamp": 1776545680
+            }
+        ],
+        "TN45B2020_D2": [
+            {
+                "lat": 10.7756,
+                "lon": 78.727,
+                "network": "low",
+                "timestamp": 1710000020
+            }
+        ],
+        "TN45C3030_D3": [
+            {
+                "lat": 10.862,
+                "lon": 78.6936,
+                "network": "good",
+                "timestamp": 1710000030
+            }
+        ],
+        "D1": [
+            {
+                "lat": 19.223,
+                "lon": 72.583,
+                "network": "good",
+                "timestamp": 1776545754
+            }
+        ]
+    },
+    "routes": {
+        "R1": [
+            "Chatram Bus Stand",
+            "Central Bus Stand",
+            "BHEL Township",
+            "Thuvakudi",
+            "NIT Trichy"
+        ],
+        "R2": [
+            "Chatram Bus Stand",
+            "Woraiyur",
+            "Srirangam",
+            "Thiruvanaikoil",
+            "Samayapuram"
+        ],
+        "R3": [
+            "Central Bus Stand",
+            "Cantonment",
+            "Airport",
+            "Pudukottai Road",
+            "Gundur"
+        ]
+    },
+    "stations": {
+        "Chatram Bus Stand": {
+            "lat": 10.8342,
+            "lon": 78.6932
+        },
+        "Central Bus Stand": {
+            "lat": 10.7905,
+            "lon": 78.7047
+        },
+        "BHEL Township": {
+            "lat": 10.7756,
+            "lon": 78.727
+        },
+        "Thuvakudi": {
+            "lat": 10.7612,
+            "lon": 78.8137
+        },
+        "NIT Trichy": {
+            "lat": 10.7606,
+            "lon": 78.8151
+        },
+        "Woraiyur": {
+            "lat": 10.8253,
+            "lon": 78.6791
+        },
+        "Srirangam": {
+            "lat": 10.862,
+            "lon": 78.6936
+        },
+        "Thiruvanaikoil": {
+            "lat": 10.8503,
+            "lon": 78.7055
+        },
+        "Samayapuram": {
+            "lat": 10.9256,
+            "lon": 78.743
+        },
+        "Cantonment": {
+            "lat": 10.8035,
+            "lon": 78.6869
+        },
+        "Airport": {
+            "lat": 10.7654,
+            "lon": 78.7097
+        },
+        "Pudukottai Road": {
+            "lat": 10.78,
+            "lon": 78.74
+        },
+        "Gundur": {
+            "lat": 10.75,
+            "lon": 78.76
+        }
+    },
+    "bus_routes": {
+        "TN45B1010": "R1",
+        "TN45B2020": "R1",
+        "TN45C3030": "R2",
+        "TN45D4040": "R3"
+    }
+}
