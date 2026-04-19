@@ -3,8 +3,9 @@ from flask_cors import CORS
 
 from routes.auth import auth_bp
 from routes.tracking import tracking_bp
-from routes.eta import eta_bp
+# from routes.eta import eta_bp
 from routes.route import route_bp
+from routes.eta_routes import eta_bp
 
 app = Flask(__name__)
 CORS(app)

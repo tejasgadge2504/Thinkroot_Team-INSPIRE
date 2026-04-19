@@ -4,3 +4,6 @@ pymongo
 bcrypt 
 python-dotenv
 requests
+scikit-learn
+tensorflow 
+numpy
