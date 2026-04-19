@@ -6,6 +6,7 @@ from routes.tracking import tracking_bp
 # from routes.eta import eta_bp
 from routes.route import route_bp
 from routes.eta_routes import eta_bp
+from routes.whatsapp_setup import whatsapp_bp
 
 app = Flask(__name__)
 CORS(app)
@@ -14,6 +15,7 @@ app.register_blueprint(auth_bp)
 app.register_blueprint(tracking_bp)
 app.register_blueprint(eta_bp)
 app.register_blueprint(route_bp)
+app.register_blueprint(whatsapp_bp)
 
 @app.route("/")
 def home():
